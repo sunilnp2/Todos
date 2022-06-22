@@ -1,0 +1,224 @@
+<!doctype html>
+{% load static %}
+<html lang="en">
+  <head>
+    <!-- <link rel="preconnect" href="https://fonts.googleapis.com"> -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital@1&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'index.css' %}">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bootstrap demo</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+  </head>
+  <body>
+    <!-- navbar section start from here -->
+    <nav class="navbar navbar-expand-lg bg-secondary">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="#">ToDos</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="#">Home</a>
+            </li>
+           
+            <li class="nav-item">
+              <a class="nav-link">Profile</a>
+            </li>
+          </ul>
+
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                User
+              </a>
+              <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <li><a class="dropdown-item" href="#">Login</a></li>
+                <li><a class="dropdown-item" href="#">Register</a></li>
+
+              </ul>
+            </li>
+          </ul>
+          <!-- <form class="d-flex" role="search">
+            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-success" type="submit">Search</button>
+          </form> -->
+        </div>
+      </div>
+    </nav>
+  <!-- navbar end -->
+
+<br>
+<h1 style="color: blue; font-size: 2rem; font-weight: bolder;">Sign Up</h1>
+{% if messages %}
+{% for mess in messages %}
+<h1 style="color:red; font-size:14px; font-weight: bold;">{{ mess }}</h1>
+{% endfor %}
+{% endif %}
+<form class = "myform" action="" method="post" novalidate> 
+  {% csrf_token %}
+	<fieldset>
+    {{ fm.non_field_errors }}
+    {% for fm in fm  %}
+	  <label for="name">{{fm.label_tag}}</label><span class="error">{{fm.errors|striptags}}</span>
+	  {% comment %} <input type="text" id="name" name="user_name" class="input"> {% endcomment %}
+    {{fm}} <br>
+    {% endfor %}
+<!-- 	  
+	  <label for="mail">Email:</label><span></span>
+	  <input type="email" id="mail" name="user_email" class="input">
+	  
+	  <label for="password">Password:</label><span></span>
+	  <input type="password" id="password" name="user_password" class="input"> -->
+	  
+	
+	  
+	</fieldset>
+	<button type="submit">Sign Up</button>
+  <p style="margin-top: 8px;">Already have account? <a href="{% url 'list:home' %}">Login</a></p>
+  </form>
+
+<style>
+  *, *:before, *:after {
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    }
+  
+    body {
+    font-family: 'Nunito', sans-serif;
+    color: #040116;
+    font-weight: bold;
+    /* background-color:lightgray; */
+    }
+    
+    .myform { 
+    width:40%;
+    height: auto;
+    margin: 0px auto;
+    margin-bottom: 10px; 
+    padding: 10px 20px;
+    background: lightcyan;
+    box-shadow: 10px -10px -10px #CCC;
+    border: 1px solid rgb(174, 18, 18) ;
+    border-radius: 50px;
+     }
+    
+    h1 {
+    text-align: center;
+    }
+
+
+   .input {
+    background: rgba(195, 174, 174, 0.1);
+    border: 1px solid black;
+    border-radius: 15px;
+    /* margin:55px; */
+    margin-top: 2px;
+    margin-bottom: 2px;
+    font-size: 16px;
+    height: auto;
+    margin: 0;
+    outline: 0;
+    padding: 5px 10px;
+    width: 100%;
+    background-color: #eef2f3;
+    color: black;
+    box-shadow: 0 1px 0 rgba(0,0,0,0.03) inset;
+    /* margin-bottom: 1px; */
+    
+    }
+    
+    input[type="radio"],
+    input[type="checkbox"] {
+    margin: 0 4px 4px 0;
+    }
+    
+    select {
+    padding: 6px;
+    height: 32px;
+    border-radius: 2px;
+    }
+    
+    button {
+    padding: 12px;
+    color: #FFF;
+    background-color: #4bc970;
+    font-size: 18px;
+    text-align: center;
+    font-style: normal;
+    border-radius: 5px;
+    width: 100%;
+    border: 1px solid #3ac162;
+    border-width: 1px 1px 3px;
+    box-shadow: 0 -1px 0 rgba(255,255,255,0.1) inset;
+    margin-top: 5px;
+    }
+    
+    fieldset {
+    /* margin-bottom: 30px; */
+    border: none;
+    } 
+    
+    legend {
+    font-size: 1.4em;
+    margin-bottom: 10px;
+    }
+    
+    label {
+    display: inline;
+    margin-bottom: 5px;
+    font-size: 1.05em;
+    color: blue;
+    }
+    
+    label.light {
+    font-weight: 300;
+    display: inline;
+    }
+    
+    .number {
+    background-color: #5fcf80;
+    color: #fff;
+    height: 20px;
+    width: 20px;
+    display: inline-block;
+    font-size: 0.5em;
+    margin-right: 4px;
+    line-height: 20px;
+    text-align: center;
+    text-shadow: 0 1px 0 rgba(255,255,255,0.2);
+    border-radius: 100%;
+    }
+    
+    @media screen and (min-width: 480px) {
+    
+    .myform {
+      max-width: 480px;
+    }
+    
+    }
+    @media screen and (min-width: 980px) {
+    
+    .myform {
+      max-width: 50%;
+    }
+    
+    }
+  
+    .error{
+      color: red;
+      font-size:12px;
+      font-style: italic;
+      display: inline;
+      margin-left: 10px;
+      padding-bottom: 3px;
+
+      
+    }
+</style>
+
+</body>
+</html>
